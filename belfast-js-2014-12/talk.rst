@@ -3,8 +3,6 @@
 :css: talk.css
 :js-body: examples.js
 :skip-help: true
-:pygments: monokai
-
 
 ----
 
