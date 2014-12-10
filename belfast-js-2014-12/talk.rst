@@ -585,4 +585,4 @@ Resources
 
 `jbscript@twitter <https://twitter.com/jbscript>`_ /
 `insin@github <https://github.com/insin>`_ /
-`talk source <https://github.com/insin/talks/belfast-js-2014-12>`_
+`talk source <https://github.com/insin/talks/tree/master/belfast-js-2014-12>`_
