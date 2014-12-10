@@ -115,7 +115,7 @@ Aside: JSX
 
 .. code:: javascript
 
-   React.createElement('div', null, 'Hello world!')
+   React.createElement('h1', null, 'Hello world!')
 
 * Transpilaton is done with an in-browser transformer (for quick prototyping)
   or a build step.
