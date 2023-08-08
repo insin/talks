@@ -6,6 +6,7 @@ import {
   Appear,
   BlockQuote,
   Cite,
+  Code,
   CodePane,
   Deck,
   Fill,
@@ -17,6 +18,7 @@ import {
   List,
   Markdown,
   Quote,
+  S,
   Slide,
   Spectacle,
   Text
@@ -28,142 +30,177 @@ import preloader from "spectacle/lib/utils/preloader";
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
-// Import custom component
-import Interactive from "../assets/interactive";
-
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
 
-
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png")
+  deps: require("../assets/deps.png"),
+  helloworld: require("../assets/helloworld.png"),
+  jsfatigue: require("../assets/jsfatigue.png"),
+  reactconfexperience: require("../assets/reactconfexperience.jpg")
 };
 
 preloader(images);
 
+const background = "#5A5475";
+const contrast = "#FFF352";
+const altColor = "#C5A3FF";
+const white = "#F8F8F2";
+
 const theme = createTheme({
-  primary: "#ff4081"
+  primary: background,  // Default background
+  secondary: white,     // Default font
+  tertiary: contrast,   // Default h1
+  quarternary: altColor // Misc!
+}, {
+  tertiary: "Consolas, monospace" // Code font
 });
 
 export default class Presentation extends React.Component {
   render() {
     return (
       <Spectacle theme={theme}>
-        <Deck transition={["zoom", "slide"]} transitionDuration={500}>
+        <Deck transition={["zoom", "slide"]} transitionDuration={500} progress="none">
           <Slide transition={["zoom"]} bgColor="primary">
-            <Heading size={1} fit caps lineHeight={1} textColor="black">
-              Spectacle
-            </Heading>
             <Heading size={1} fit caps>
-              A ReactJS Presentation Library
+              nwb
             </Heading>
-            <Heading size={1} fit caps textColor="black">
-              Where You Can Write Your Decks In JSX
+            <Heading size={2} fit caps>
+              Quick React development
             </Heading>
-            <Link href="https://github.com/FormidableLabs/spectacle">
-              <Text bold caps textColor="tertiary">View on Github</Text>
-            </Link>
-            <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
-          </Slide>
-          <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-            <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-            <Heading size={2} caps fit textColor="primary" textFont="primary">
-              Wait what?
-            </Heading>
-          </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
-            <CodePane
-              lang="jsx"
-              source={require("raw!../assets/deck.example")}
-              margin="20px auto"
-            />
-          </Slide>
-          <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
             <Appear fid="1">
-              <Heading size={1} caps fit textColor="primary">
-                Full Width
+              <Heading size={2} fit caps textColor="quarternary">
+                Zero configuration <S type="italic">until you need it</S>
               </Heading>
             </Appear>
+          </Slide>
+          <Slide transition={["slide"]} bgImage={images.helloworld.replace("/", "")} bgDarken={0.6}>
             <Appear fid="2">
               <Heading size={1} caps fit textColor="tertiary">
-                Adjustable Darkness
-              </Heading>
-            </Appear>
-            <Appear fid="3">
-              <Heading size={1} caps fit textColor="primary">
-                Background Imagery
+                kinda&hellip;
               </Heading>
             </Appear>
           </Slide>
-          <Slide transition={["zoom", "fade"]} bgColor="primary">
-            <Heading caps fit>Flexible Layouts</Heading>
-            <Layout>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Left
-                </Heading>
-              </Fill>
-              <Fill>
-                <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-                  Right
-                </Heading>
-              </Fill>
-            </Layout>
+          <Slide transition={["slide"]} bgImage={images.jsfatigue.replace("/", "")} bgDarken={0.6}>
+            <Appear fid="1">
+              <Heading size={1} caps fit textColor="tertiary">
+                kinda&hellip;
+              </Heading>
+            </Appear>
           </Slide>
-          <Slide transition={["slide"]} bgColor="black">
-            <BlockQuote>
-              <Quote>Wonderfully formatted quotes</Quote>
-              <Cite>Ken Wheeler</Cite>
-            </BlockQuote>
+          <Slide transition={["slide"]} bgImage={images.deps.replace("/", "")} bgDarken={0.6}>
+            <Appear fid="1">
+              <Heading size={1} caps fit textColor="tertiary">
+                this
+              </Heading>
+            </Appear>
           </Slide>
-          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
-            <Heading caps fit size={1} textColor="primary">
-              Inline Markdown
+          <Slide transition={["slide"]}>
+            <Heading size={1} fit caps>
+              Build configuration as tooling
             </Heading>
-            <Markdown>
-              {`
-![Markdown Logo](${images.markdown.replace("/", "")})
-
-You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-* Lists too!
-* With ~~strikethrough~~ and _italic_
-* And lets not forget **bold**
-              `}
-            </Markdown>
-          </Slide>
-          <Slide transition={["slide", "spin"]} bgColor="primary">
-            <Heading caps fit size={1} textColor="tertiary">
-              Smooth
-            </Heading>
-            <Heading caps fit size={1} textColor="secondary">
-              Combinable Transitions
+            <Heading size={2} caps>
+              (in general)
             </Heading>
           </Slide>
           <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
             <List>
-              <Appear><ListItem>Inline style based theme system</ListItem></Appear>
-              <Appear><ListItem>Autofit text</ListItem></Appear>
-              <Appear><ListItem>Flexbox layout system</ListItem></Appear>
-              <Appear><ListItem>React-Router navigation</ListItem></Appear>
-              <Appear><ListItem>PDF export</ListItem></Appear>
-              <Appear><ListItem>And...</ListItem></Appear>
+              <Appear><ListItem>Reduce configuration and dependency boilerplate</ListItem></Appear>
+              <Appear>
+                <ListItem>
+                  Update your entire build setup just like any other npm module:
+                  <List>
+                    <ListItem>Bump the dependency number</ListItem>
+                    <ListItem>Follow the release notes</ListItem>
+                  </List>
+                </ListItem>
+              </Appear>
+              <Appear><ListItem>Lower inertia when starting and maintaining projects</ListItem></Appear>
             </List>
           </Slide>
-          <Slide transition={["slide"]} bgColor="primary">
-            <Heading size={1} caps fit textColor="tertiary">
-              Your presentations are interactive
+          <Slide transition={["slide"]}>
+            <Heading size={1} fit caps>
+              React apps
             </Heading>
-            <Interactive/>
           </Slide>
-          <Slide transition={["spin", "slide"]} bgColor="tertiary">
-            <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
-              Made with love in Seattle by
+          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+            <Heading size={2} caps textColor={background}>
+              Default setup
             </Heading>
-            <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
+            <List>
+              <Appear><ListItem>Webpack configured to handle JS, CSS, JSON, fonts and images</ListItem></Appear>
+              <Appear><ListItem>Babel configured for ES2015 (loose mode), Stage 2 and <Code textColor={background}>@decorators</Code></ListItem></Appear>
+              <Appear><ListItem>Polyfills for <Code textColor={background}>Promise</Code>, <Code textColor={background}>fetch()</Code> and <Code textColor={background}>Object.assign()</Code></ListItem></Appear>
+              <Appear><ListItem>Hot Module Reloading development server</ListItem></Appear>
+              <Appear><ListItem>Karma testing with Mocha and Expect</ListItem></Appear>
+              <Appear><ListItem>Production build with determinstic filename hashes</ListItem></Appear>
+            </List>
+          </Slide>
+          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+            <Heading size={2} caps textColor={background}>
+              Configuration
+            </Heading>
+            <List>
+              <Appear><ListItem>Tweak Webpack loader and plugin config using unique ids</ListItem></Appear>
+              <Appear><ListItem>Tweak Babel config</ListItem></Appear>
+              <Appear><ListItem>Configure different Karma frameworks and reporters</ListItem></Appear>
+              <Appear>
+                <ListItem>
+                  Plugin modules for style preprocessors
+                  <List>
+                    <ListItem><Code textColor={background}>npm install nwb-sass</Code></ListItem>
+                  </List>
+                </ListItem>
+              </Appear>
+              <Appear><ListItem>Escape hatches for extra Webpack, Babel and Karma config</ListItem></Appear>
+            </List>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading size={1} fit caps>
+              Quick prototyping
+            </Heading>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Image src={images.reactconfexperience.replace("/", "")} margin="0px auto 40px" height="391px"/>
+          </Slide>
+          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+            <Heading size={2} caps textColor={background}>
+              react command
+            </Heading>
+            <List>
+              <Appear><ListItem><Code textColor={background}>react run app.js</Code> - development server</ListItem></Appear>
+              <Appear><ListItem><Code textColor={background}>react build app.js</Code> - production build</ListItem></Appear>
+              <Appear><ListItem>Same base configuration for React apps, but with Babel Stage 0</ListItem></Appear>
+            </List>
+          </Slide>
+          <Slide transition={["slide"]}>
+            <Heading size={1} fit caps>
+              React components
+            </Heading>
+          </Slide>
+          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+            <List>
+              <Appear><ListItem>Develop against a demo app using the development server</ListItem></Appear>
+              <Appear>
+                <ListItem>
+                  Build for npm:
+                  <List>
+                    <ListItem>ES5</ListItem>
+                    <ListItem>ES6 modules</ListItem>
+                    <ListItem>UMD build</ListItem>
+                  </List>
+                </ListItem>
+              </Appear>
+              <Appear><ListItem><Code textColor={background}>propTypes</Code> wrapped in an environment check</ListItem></Appear>
+              <Appear><ListItem>Testing preconfigured for code coverage and Travis CI</ListItem></Appear>
+            </List>
+          </Slide>
+          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+            <Link href="https://github.com/insin/nwb">
+              <Text bold textColor={background}>View on Github</Text>
+            </Link>
+            <Code textColor={background}>npm install -g nwb</Code>
           </Slide>
         </Deck>
       </Spectacle>
